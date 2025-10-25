@@ -1,0 +1,23 @@
+lib/
+├── main.dart
+├── config/
+│   ├── theme.dart
+│   └── routes.dart 
+├── widgets/
+│   ├── gradient_background.dart
+│   ├── custom_button.dart
+│   ├── custom_textfield.dart
+│   ├── photo_picker.dart
+│   ├── file_picker_field.dart
+│   ├── dropdown_field.dart
+│   └── interest_input_field.dart
+└── screens/
+    ├── splash_screen.dart
+    ├── sign_in_screen.dart
+    ├── sign_up_screen.dart
+    ├── profile_info_screen.dart
+    ├── home_page.dart 
+    ├── main_navigation.dart 
+    ├── friends_screen.dart 
+    ├── chat_screen.dart 
+    └── profile_screen.dart 
