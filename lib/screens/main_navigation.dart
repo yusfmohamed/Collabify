@@ -25,8 +25,8 @@ class _MainNavigationState extends State<MainNavigation> {
     super.initState();
     _screens = [
       HomePage(username: widget.username),
-      FriendsScreen(),
-      ChatScreen(),
+      const FriendsScreen(),
+      const ChatScreen(),
       ProfileScreen(username: widget.username),
     ];
   }
@@ -41,17 +41,17 @@ class _MainNavigationState extends State<MainNavigation> {
         key: _bottomNavigationKey,
         index: _currentIndex,
         height: 65.0,
-        items: <Widget>[
+        items: const <Widget>[
           Icon(Icons.home, size: 30, color: Colors.white),
           Icon(Icons.people, size: 30, color: Colors.white),
           Icon(Icons.chat_bubble, size: 30, color: Colors.white),
           Icon(Icons.person, size: 30, color: Colors.white),
         ],
-        color: Color(0xFF4A148C), // ✅ Dark purple curved bar (blurred effect)
-        buttonBackgroundColor: Color(0xFF6B2FD9), // ✅ Purple circle around selected icon
+        color: const Color(0xFF4A148C), // ✅ Dark purple curved bar (blurred effect)
+        buttonBackgroundColor: const Color(0xFF6B2FD9), // ✅ Purple circle around selected icon
         backgroundColor: Colors.transparent, // ✅ NO solid background behind bar
         animationCurve: Curves.easeInOut,
-        animationDuration: Duration(milliseconds: 300),
+        animationDuration: const Duration(milliseconds: 300),
         onTap: (index) {
           setState(() {
             _currentIndex = index;

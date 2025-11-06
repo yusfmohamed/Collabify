@@ -15,19 +15,19 @@ class FriendsScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Container(
-                  padding: EdgeInsets.all(30),
-                  decoration: BoxDecoration(
+                  padding: const EdgeInsets.all(30),
+                  decoration: const BoxDecoration(
                     color: Color(0xFF6B2FD9),
                     shape: BoxShape.circle,
                   ),
-                  child: Icon(
+                  child: const Icon(
                     Icons.people,
                     size: 80,
                     color: Colors.white,
                   ),
                 ),
-                SizedBox(height: 30),
-                Text(
+                const SizedBox(height: 30),
+                const Text(
                   'Friends',
                   style: TextStyle(
                     fontSize: 32,
@@ -35,7 +35,7 @@ class FriendsScreen extends StatelessWidget {
                     color: Color(0xFF4A148C),
                   ),
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 Text(
                   'Connect with your collaborators',
                   style: TextStyle(

@@ -14,7 +14,7 @@ class AppRoutes {
     return {
       splash: (context) => const SplashScreen(),
       signIn: (context) => SignInScreen(),
-      signUp: (context) => SignUpScreen(),
+      signUp: (context) => const SignUpScreen(),
       // Default route - use onGenerateRoute for username passing
     };
   }

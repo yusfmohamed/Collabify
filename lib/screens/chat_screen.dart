@@ -6,7 +6,7 @@ class ChatScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         gradient: LinearGradient(
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
@@ -18,9 +18,9 @@ class ChatScreen extends StatelessWidget {
           stops: [0.0, 0.5, 1.0],
         ),
       ),
-      child: SafeArea(
+      child: const SafeArea(
         child: Padding(
-          padding: const EdgeInsets.only(bottom: 80.0), // Space for nav bar
+          padding: EdgeInsets.only(bottom: 80.0), // Space for nav bar
           child: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,

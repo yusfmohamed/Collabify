@@ -72,10 +72,10 @@ class _InterestInputFieldState extends State<InterestInputField> {
             controller: widget.interestController,
             style: AppTextStyles.input,
             maxLines: 2,
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
               hintText: 'What\'s your interest? (e.g., Graphic Design)',
               hintStyle: AppTextStyles.hint,
-              prefixIcon: const Padding(
+              prefixIcon: Padding(
                 padding: EdgeInsets.only(left: 20, right: 15, top: 12),
                 child: Icon(
                   Icons.interests_outlined,
@@ -84,7 +84,7 @@ class _InterestInputFieldState extends State<InterestInputField> {
                 ),
               ),
               border: InputBorder.none,
-              contentPadding: const EdgeInsets.symmetric(
+              contentPadding: EdgeInsets.symmetric(
                 horizontal: 20,
                 vertical: 20,
               ),

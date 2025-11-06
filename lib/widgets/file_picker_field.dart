@@ -59,7 +59,7 @@ class _FilePickerFieldState extends State<FilePickerField> {
     if (bytes <= 0) return "0 B";
     const suffixes = ["B", "KB", "MB", "GB", "TB"];
     int i = (log(bytes) / log(1024)).floor();
-    return ((bytes / pow(1024, i)).toStringAsFixed(decimals)) + ' ' + suffixes[i];
+    return '${(bytes / pow(1024, i)).toStringAsFixed(decimals)} ${suffixes[i]}';
   }
 
   @override
@@ -141,12 +141,12 @@ class _FilePickerFieldState extends State<FilePickerField> {
             padding: const EdgeInsets.only(top: 8.0, left: 16.0),
             child: Row(
               children: [
-                Icon(
+                const Icon(
                   Icons.check_circle,
                   color: Colors.green,
                   size: 16,
                 ),
-                SizedBox(width: 8),
+                const SizedBox(width: 8),
                 Expanded(
                   child: Text(
                     'File selected: ${_selectedFile!.name}',

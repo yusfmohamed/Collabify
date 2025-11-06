@@ -16,7 +16,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       backgroundColor: Colors.transparent,
       body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
@@ -43,7 +43,7 @@ class _HomePageState extends State<HomePage> {
                         _buildTopIcon(Icons.settings, Colors.white, () {
                           // Navigate to settings
                         }),
-                        SizedBox(width: 12),
+                        const SizedBox(width: 12),
                         _buildTopIcon(Icons.assignment, Colors.white, () {
                           // Navigate to tasks
                         }),
@@ -57,12 +57,12 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
 
-              SizedBox(height: 40),
+              const SizedBox(height: 40),
 
               // Welcome message with username
               Text(
                 'Hello ${widget.username}',
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 42,
                   fontWeight: FontWeight.w700,
                   color: Colors.white,
@@ -76,10 +76,10 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
 
-              SizedBox(height: 60),
+              const SizedBox(height: 60),
 
               // Choose Role text
-              Text(
+              const Text(
                 'Choose Role',
                 style: TextStyle(
                   fontSize: 36,
@@ -95,7 +95,7 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
 
-              SizedBox(height: 30),
+              const SizedBox(height: 30),
 
               // Host button
               Padding(
@@ -104,7 +104,7 @@ class _HomePageState extends State<HomePage> {
                   icon: Icons.rocket_launch,
                   title: 'Host',
                   subtitle: 'Post your project and find collaborators',
-                  gradient: LinearGradient(
+                  gradient: const LinearGradient(
                     colors: [Color(0xFFFB923C), Color(0xFFF97316)],
                   ),
                   onTap: () {
@@ -113,7 +113,7 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
 
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
 
               // Join button
               Padding(
@@ -122,7 +122,7 @@ class _HomePageState extends State<HomePage> {
                   icon: Icons.handshake,
                   title: 'Join',
                   subtitle: 'Join projects based on your skills',
-                  gradient: LinearGradient(
+                  gradient: const LinearGradient(
                     colors: [Color(0xFF4A148C), Color(0xFF6B2FD9)],
                   ),
                   onTap: () {
@@ -131,7 +131,7 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
 
-              Spacer(),
+              const Spacer(),
             ],
           ),
         ),
@@ -143,7 +143,7 @@ class _HomePageState extends State<HomePage> {
     return InkWell(
       onTap: onTap,
       child: Container(
-        padding: EdgeInsets.all(10),
+        padding: const EdgeInsets.all(10),
         decoration: BoxDecoration(
           color: Colors.white.withOpacity(0.2),
           borderRadius: BorderRadius.circular(12),
@@ -167,11 +167,11 @@ class _HomePageState extends State<HomePage> {
     return InkWell(
       onTap: onTap,
       child: Container(
-        padding: EdgeInsets.all(20),
+        padding: const EdgeInsets.all(20),
         decoration: BoxDecoration(
           gradient: gradient,
           borderRadius: BorderRadius.circular(20),
-          boxShadow: [
+          boxShadow: const [
             BoxShadow(
               color: Colors.black26,
               offset: Offset(0, 4),
@@ -182,7 +182,7 @@ class _HomePageState extends State<HomePage> {
         child: Row(
           children: [
             Container(
-              padding: EdgeInsets.all(16),
+              padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
                 color: Colors.white.withOpacity(0.3),
                 borderRadius: BorderRadius.circular(16),
@@ -193,20 +193,20 @@ class _HomePageState extends State<HomePage> {
                 size: 36,
               ),
             ),
-            SizedBox(width: 20),
+            const SizedBox(width: 20),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     title,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 28,
                       fontWeight: FontWeight.bold,
                       color: Colors.white,
                     ),
                   ),
-                  SizedBox(height: 4),
+                  const SizedBox(height: 4),
                   Text(
                     subtitle,
                     style: TextStyle(
@@ -217,7 +217,7 @@ class _HomePageState extends State<HomePage> {
                 ],
               ),
             ),
-            Icon(
+            const Icon(
               Icons.arrow_forward_ios,
               color: Colors.white,
               size: 24,
