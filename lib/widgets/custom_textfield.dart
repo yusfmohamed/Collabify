@@ -7,6 +7,8 @@ class CustomTextField extends StatefulWidget {
   final bool isPassword;
   final TextEditingController? controller;
   final String? errorText;
+  final int maxLines;
+  final TextInputType? keyboardType;
 
   const CustomTextField({
     Key? key,
@@ -15,6 +17,8 @@ class CustomTextField extends StatefulWidget {
     this.isPassword = false,
     this.controller,
     this.errorText,
+    this.maxLines = 1,
+    this.keyboardType,
   }) : super(key: key);
 
   @override
@@ -49,6 +53,9 @@ class _CustomTextFieldState extends State<CustomTextField> {
           child: TextField(
             controller: widget.controller,
             obscureText: _obscureText,
+            maxLines: widget.isPassword ? 1 : widget.maxLines,
+            minLines: widget.isPassword ? 1 : null,
+            keyboardType: widget.keyboardType,
             style: AppTextStyles.input,
             decoration: InputDecoration(
               hintText: widget.hintText,
@@ -85,9 +92,9 @@ class _CustomTextFieldState extends State<CustomTextField> {
                     )
                   : null,
               border: InputBorder.none,
-              contentPadding: const EdgeInsets.symmetric(
+              contentPadding: EdgeInsets.symmetric(
                 horizontal: 20,
-                vertical: 20,
+                vertical: widget.maxLines > 1 ? 20 : 20,
               ),
             ),
           ),
