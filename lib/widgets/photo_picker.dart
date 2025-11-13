@@ -8,7 +8,7 @@ class PhotoPicker extends StatefulWidget {
 
   const PhotoPicker({
     Key? key,
-    required this.onPhotoSelected,
+    required this.onPhotoSelected, String? initialImagePath,
   }) : super(key: key);
 
   @override

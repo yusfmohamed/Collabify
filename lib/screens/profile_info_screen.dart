@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../config/theme.dart';
-import '../config/routes.dart'; // ⚠️ ADD THIS IMPORT
+import '../config/routes.dart';
+import '../services/profile_service.dart';
 import '../widgets/custom_button.dart';
 import '../widgets/photo_picker.dart';
 import '../widgets/custom_textfield.dart';
@@ -32,9 +33,87 @@ class _ProfileInfoScreenState extends State<ProfileInfoScreen> {
   String? _interestError;
   
   List<String> _hashtags = [];
+  bool _isLoading = true;
+  int _bioCharCount = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadExistingProfile();
+    
+    // Add listeners to clear errors on input
+    _fullNameController.addListener(_onFullNameChanged);
+    _bioController.addListener(_onBioChanged);
+    _portfolioController.addListener(_onPortfolioChanged);
+    _interestController.addListener(_onInterestChanged);
+  }
+
+  void _onFullNameChanged() {
+    if (_fullNameError != null && _fullNameController.text.trim().isNotEmpty) {
+      setState(() => _fullNameError = null);
+    }
+  }
+
+  void _onBioChanged() {
+    setState(() {
+      _bioCharCount = _bioController.text.length;
+      if (_bioError != null && _bioController.text.trim().isNotEmpty && _bioController.text.length <= 250) {
+        _bioError = null;
+      }
+    });
+  }
+
+  void _onPortfolioChanged() {
+    if (_portfolioError != null && _portfolioController.text.trim().isNotEmpty) {
+      setState(() => _portfolioError = null);
+    }
+  }
+
+  void _onInterestChanged() {
+    if (_interestError != null && _interestController.text.trim().isNotEmpty && _hashtags.isNotEmpty) {
+      setState(() => _interestError = null);
+    }
+  }
+
+  Future<void> _loadExistingProfile() async {
+    try {
+      final profile = await ProfileService.getProfile(widget.username);
+      
+      if (profile != null && mounted) {
+        setState(() {
+          _fullNameController.text = profile.fullName;
+          _bioController.text = profile.bio;
+          _bioCharCount = profile.bio.length;
+          _portfolioController.text = profile.portfolioLink;
+          _interestController.text = profile.interest;
+          _selectedNationality = profile.nationality;
+          _hashtags = profile.hashtags;
+          _profilePhotoPath = profile.profilePhotoPath;
+          _isLoading = false;
+        });
+      } else if (mounted) {
+        setState(() => _isLoading = false);
+      }
+    } catch (e) {
+      if (mounted) {
+        setState(() => _isLoading = false);
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Error loading profile: $e'),
+            backgroundColor: Colors.red,
+          ),
+        );
+      }
+    }
+  }
 
   @override
   void dispose() {
+    _fullNameController.removeListener(_onFullNameChanged);
+    _bioController.removeListener(_onBioChanged);
+    _portfolioController.removeListener(_onPortfolioChanged);
+    _interestController.removeListener(_onInterestChanged);
+    
     _fullNameController.dispose();
     _bioController.dispose();
     _portfolioController.dispose();
@@ -43,83 +122,143 @@ class _ProfileInfoScreenState extends State<ProfileInfoScreen> {
   }
 
   bool _isValidUrl(String url) {
-    final urlPattern = RegExp(
-      r'^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$',
-      caseSensitive: false,
-    );
-    return urlPattern.hasMatch(url);
+    // More flexible URL validation
+    if (url.isEmpty) return false;
+    
+    try {
+      final uri = Uri.tryParse(url);
+      if (uri == null) return false;
+      
+      // Check if it has a scheme (http/https) or add it
+      if (!url.startsWith('http://') && !url.startsWith('https://')) {
+        final testUrl = 'https://$url';
+        final testUri = Uri.tryParse(testUrl);
+        return testUri != null && testUri.host.isNotEmpty && testUri.host.contains('.');
+      }
+      
+      return uri.hasScheme && uri.host.isNotEmpty && uri.host.contains('.');
+    } catch (e) {
+      return false;
+    }
   }
 
-  void _validateAndSubmit() {
+  Future<void> _validateAndSubmit() async {
     setState(() {
-      // Reset errors
       _fullNameError = null;
       _bioError = null;
       _portfolioError = null;
       _nationalityError = null;
       _interestError = null;
 
-      // Validate Full Name
       if (_fullNameController.text.trim().isEmpty) {
         _fullNameError = 'Full name is required';
       }
 
-      // Validate Bio
       if (_bioController.text.trim().isEmpty) {
         _bioError = 'Bio is required';
       } else if (_bioController.text.length > 250) {
         _bioError = 'Bio must be 250 characters or less';
       }
 
-      // Validate Portfolio Link
       if (_portfolioController.text.trim().isEmpty) {
         _portfolioError = 'Portfolio link is required';
       } else if (!_isValidUrl(_portfolioController.text.trim())) {
         _portfolioError = 'Please enter a valid URL';
       }
 
-      // Validate Nationality
-      if (_selectedNationality == null) {
+      if (_selectedNationality == null || _selectedNationality!.isEmpty) {
         _nationalityError = 'Please select your nationality';
       }
 
-      // Validate Interest
       if (_interestController.text.trim().isEmpty) {
         _interestError = 'Please describe your interest';
-      }
-
-      // Validate Hashtags
-      if (_hashtags.isEmpty) {
+      } else if (_hashtags.isEmpty) {
         _interestError = 'Please add at least one hashtag';
       }
-
-      // If no errors, proceed
-      if (_fullNameError == null &&
-          _bioError == null &&
-          _portfolioError == null &&
-          _nationalityError == null &&
-          _interestError == null) {
-        print('Username: ${widget.username}');
-        print('Full Name: ${_fullNameController.text}');
-        print('Profile Photo: $_profilePhotoPath');
-        print('Bio: ${_bioController.text}');
-        print('Portfolio: ${_portfolioController.text}');
-        print('Nationality: $_selectedNationality');
-        print('Interest: ${_interestController.text}');
-        print('Hashtags: $_hashtags');
-        
-        // ✅ FIXED: Navigate to MainNavigation with username
-        Navigator.pushReplacementNamed(
-          context,
-          AppRoutes.home,
-          arguments: {'username': widget.username},
-        );
-      }
     });
+
+    // Check if there are any errors
+    if (_fullNameError == null &&
+        _bioError == null &&
+        _portfolioError == null &&
+        _nationalityError == null &&
+        _interestError == null) {
+      
+      try {
+        final profileData = ProfileData(
+          username: widget.username,
+          fullName: _fullNameController.text.trim(),
+          bio: _bioController.text.trim(),
+          portfolioLink: _portfolioController.text.trim(),
+          nationality: _selectedNationality!,
+          interest: _interestController.text.trim(),
+          hashtags: _hashtags,
+          profilePhotoPath: _profilePhotoPath,
+        );
+
+        final success = await ProfileService.saveProfile(profileData);
+        
+        if (!mounted) return;
+        
+        if (success) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('✅ Profile saved successfully!'),
+              backgroundColor: Colors.green,
+              duration: Duration(seconds: 2),
+            ),
+          );
+          
+          Navigator.pushReplacementNamed(
+            context,
+            AppRoutes.home,
+            arguments: {'username': widget.username},
+          );
+        } else {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('Failed to save profile. Please try again.'),
+              backgroundColor: Colors.red,
+            ),
+          );
+        }
+      } catch (e) {
+        if (mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text('Error: $e'),
+              backgroundColor: Colors.red,
+            ),
+          );
+        }
+      }
+    }
   }
 
   @override
   Widget build(BuildContext context) {
+    if (_isLoading) {
+      return Scaffold(
+        body: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [
+                AppColors.gradientTop,
+                AppColors.gradientMiddle,
+                AppColors.gradientBottom,
+              ],
+              stops: [0.0, 0.5, 1.0],
+            ),
+          ),
+          child: const Center(
+            child: CircularProgressIndicator(color: Colors.white),
+          ),
+        ),
+      );
+    }
+
     return Scaffold(
       body: Container(
         decoration: const BoxDecoration(
@@ -166,6 +305,7 @@ class _ProfileInfoScreenState extends State<ProfileInfoScreen> {
                               _profilePhotoPath = path;
                             });
                           },
+                          initialImagePath: _profilePhotoPath,
                         ),
                         const SizedBox(height: 25),
                         
@@ -185,14 +325,15 @@ class _ProfileInfoScreenState extends State<ProfileInfoScreen> {
                               icon: Icons.edit_outlined,
                               controller: _bioController,
                               errorText: _bioError,
+                              maxLines: 3,
                             ),
                             Padding(
                               padding: const EdgeInsets.only(left: 20, top: 5),
                               child: Text(
-                                '${_bioController.text.length}/250',
+                                '$_bioCharCount/250',
                                 style: TextStyle(
                                   fontSize: 12,
-                                  color: _bioController.text.length > 250
+                                  color: _bioCharCount > 250
                                       ? Colors.red
                                       : AppColors.textLight,
                                 ),
@@ -207,6 +348,7 @@ class _ProfileInfoScreenState extends State<ProfileInfoScreen> {
                           icon: Icons.link,
                           controller: _portfolioController,
                           errorText: _portfolioError,
+                          keyboardType: TextInputType.url,
                         ),
                         const SizedBox(height: 15),
                         
@@ -248,7 +390,7 @@ class _ProfileInfoScreenState extends State<ProfileInfoScreen> {
                           onHashtagsChanged: (tags) {
                             setState(() {
                               _hashtags = tags;
-                              if (tags.isNotEmpty && _interestController.text.isNotEmpty) {
+                              if (tags.isNotEmpty && _interestController.text.trim().isNotEmpty) {
                                 _interestError = null;
                               }
                             });
