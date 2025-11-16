@@ -5,13 +5,14 @@ import '../screens/sign_up_screen.dart';
 import '../screens/main_navigation.dart';
 import '../screens/about_screen.dart';
 import '../screens/profile_info_screen.dart';
-
+import '../screens/settings_screen.dart';
 class AppRoutes {
   static const String splash = '/';
   static const String signIn = '/sign-in';
   static const String signUp = '/sign-up';
   static const String home = '/home';
   static const String about = '/about';
+  static const String settings = '/settings';
   static const String profileInfo = '/profile-info';
 
   static Map<String, WidgetBuilder> get routes {
@@ -20,6 +21,7 @@ class AppRoutes {
       signIn: (context) => SignInScreen(),
       signUp: (context) => const SignUpScreen(),
       about: (context) => const AboutScreen(),
+      settings: (context) => const SettingsScreen(),
       // Routes with parameters use onGenerateRoute
     };
   }
