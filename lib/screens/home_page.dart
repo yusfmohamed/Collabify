@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'about_screen.dart';
 
 class HomePage extends StatefulWidget {
   final String username;
@@ -37,7 +37,7 @@ class _HomePageState extends State<HomePage> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    // Left side - Settings and Tasks
+                    // Left side - Settings, Tasks, and About
                     Row(
                       children: [
                         _buildTopIcon(Icons.settings, Colors.white, () {
@@ -46,6 +46,16 @@ class _HomePageState extends State<HomePage> {
                         const SizedBox(width: 12),
                         _buildTopIcon(Icons.assignment, Colors.white, () {
                           // Navigate to tasks
+                        }),
+                        const SizedBox(width: 12),
+                        _buildTopIcon(Icons.info_outline, const Color(0xFFFBBF24), () {
+                          // Navigate to About Screen
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const AboutScreen(),
+                            ),
+                          );
                         }),
                       ],
                     ),
@@ -142,11 +152,16 @@ class _HomePageState extends State<HomePage> {
   Widget _buildTopIcon(IconData icon, Color color, VoidCallback onTap) {
     return InkWell(
       onTap: onTap,
+      borderRadius: BorderRadius.circular(12),
       child: Container(
         padding: const EdgeInsets.all(10),
         decoration: BoxDecoration(
           color: Colors.white.withOpacity(0.2),
           borderRadius: BorderRadius.circular(12),
+          border: Border.all(
+            color: Colors.white.withOpacity(0.3),
+            width: 1,
+          ),
         ),
         child: Icon(
           icon,
@@ -166,6 +181,7 @@ class _HomePageState extends State<HomePage> {
   }) {
     return InkWell(
       onTap: onTap,
+      borderRadius: BorderRadius.circular(20),
       child: Container(
         padding: const EdgeInsets.all(20),
         decoration: BoxDecoration(
