@@ -1,5 +1,7 @@
+import 'package:collabify/screens/join_screen.dart';
 import 'package:flutter/material.dart';
-
+import 'about_screen.dart';
+import 'settings_screen.dart';
 
 class HomePage extends StatefulWidget {
   final String username;
@@ -21,9 +23,9 @@ class _HomePageState extends State<HomePage> {
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
             colors: [
-              Color(0xFF4A148C),    // gradientTop
-              Color(0xFF5E35B1),    // gradientMiddle
-              Color(0xFF00BCD4),    // gradientBottom
+              Color(0xFF4A148C), // gradientTop
+              Color(0xFF5E35B1), // gradientMiddle
+              Color(0xFF00BCD4), // gradientBottom
             ],
             stops: [0.0, 0.5, 1.0],
           ),
@@ -37,15 +39,31 @@ class _HomePageState extends State<HomePage> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    // Left side - Settings and Tasks
+                    // Left side - Settings, Tasks, and About
                     Row(
                       children: [
                         _buildTopIcon(Icons.settings, Colors.white, () {
                           // Navigate to settings
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const SettingsScreen(),
+                            ),
+                          );
                         }),
                         const SizedBox(width: 12),
                         _buildTopIcon(Icons.assignment, Colors.white, () {
                           // Navigate to tasks
+                        }),
+                        const SizedBox(width: 12),
+                        _buildTopIcon(Icons.info_outline, const Color(0xFFFBBF24), () {
+                          // Navigate to About Screen
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const AboutScreen(),
+                            ),
+                          );
                         }),
                       ],
                     ),
@@ -126,6 +144,10 @@ class _HomePageState extends State<HomePage> {
                     colors: [Color(0xFF4A148C), Color(0xFF6B2FD9)],
                   ),
                   onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (BuildContext context) {
+                      return JoinScreen();
+                    }));
                     // Navigate to join project screen
                   },
                 ),
@@ -142,11 +164,16 @@ class _HomePageState extends State<HomePage> {
   Widget _buildTopIcon(IconData icon, Color color, VoidCallback onTap) {
     return InkWell(
       onTap: onTap,
+      borderRadius: BorderRadius.circular(12),
       child: Container(
         padding: const EdgeInsets.all(10),
         decoration: BoxDecoration(
           color: Colors.white.withOpacity(0.2),
           borderRadius: BorderRadius.circular(12),
+          border: Border.all(
+            color: Colors.white.withOpacity(0.3),
+            width: 1,
+          ),
         ),
         child: Icon(
           icon,
@@ -166,6 +193,7 @@ class _HomePageState extends State<HomePage> {
   }) {
     return InkWell(
       onTap: onTap,
+      borderRadius: BorderRadius.circular(20),
       child: Container(
         padding: const EdgeInsets.all(20),
         decoration: BoxDecoration(
