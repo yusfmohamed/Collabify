@@ -1,7 +1,7 @@
 import 'package:collabify/screens/join_screen.dart';
 import 'package:flutter/material.dart';
 import 'about_screen.dart';
-import 'settings_screen.dart';
+// import 'settings_screen.dart';
 
 class HomePage extends StatefulWidget {
   final String username;
@@ -44,12 +44,12 @@ class _HomePageState extends State<HomePage> {
                       children: [
                         _buildTopIcon(Icons.settings, Colors.white, () {
                           // Navigate to settings
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const SettingsScreen(),
-                            ),
-                          );
+                          // Navigator.push(
+                          //   context,
+                          //   MaterialPageRoute(
+                          //     builder: (context) => const SettingsScreen(),
+                          //   ),
+                          // );
                         }),
                         const SizedBox(width: 12),
                         _buildTopIcon(Icons.assignment, Colors.white, () {
