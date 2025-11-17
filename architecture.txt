@@ -11,6 +11,12 @@ lib/
 │   ├── file_picker_field.dart
 │   ├── dropdown_field.dart
 │   └── interest_input_field.dart
+├── components/
+│   └── announcement_item.dart
+├── models/
+│   └── announcement.dart
+├── services/
+│   └── profile_service.dart
 └── screens/
     ├── splash_screen.dart
     ├── sign_in_screen.dart
@@ -20,4 +26,6 @@ lib/
     ├── main_navigation.dart 
     ├── friends_screen.dart 
     ├── chat_screen.dart 
-    └── profile_screen.dart 
+    ├── profile_screen.dart
+    ├── about_screen.dart
+    └── join_screen.dart
