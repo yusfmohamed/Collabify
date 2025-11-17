@@ -28,4 +28,5 @@ lib/
     ├── chat_screen.dart 
     ├── profile_screen.dart
     ├── about_screen.dart
-    └── join_screen.dart
+    ├── join_screen.dart
+    └── onboarding_screen.dart
