@@ -1,5 +1,5 @@
+import 'package:collabify/screens/join_screen.dart';
 import 'package:flutter/material.dart';
-
 
 class HomePage extends StatefulWidget {
   final String username;
@@ -21,9 +21,9 @@ class _HomePageState extends State<HomePage> {
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
             colors: [
-              Color(0xFF4A148C),    // gradientTop
-              Color(0xFF5E35B1),    // gradientMiddle
-              Color(0xFF00BCD4),    // gradientBottom
+              Color(0xFF4A148C), // gradientTop
+              Color(0xFF5E35B1), // gradientMiddle
+              Color(0xFF00BCD4), // gradientBottom
             ],
             stops: [0.0, 0.5, 1.0],
           ),
@@ -126,6 +126,10 @@ class _HomePageState extends State<HomePage> {
                     colors: [Color(0xFF4A148C), Color(0xFF6B2FD9)],
                   ),
                   onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (BuildContext context) {
+                      return JoinScreen();
+                    }));
                     // Navigate to join project screen
                   },
                 ),
