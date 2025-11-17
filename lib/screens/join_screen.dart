@@ -2,7 +2,7 @@ import 'dart:ui';
 
 import 'package:collabify/components/announcement_item.dart';
 import 'package:collabify/models/announcement.dart';
-import 'package:collabify/widgets/gradient_background.dart';
+// import 'package:collabify/widgets/gradient_background.dart';
 import 'package:flutter/material.dart';
 
 class JoinScreen extends StatelessWidget {
@@ -13,7 +13,7 @@ class JoinScreen extends StatelessWidget {
         uaserName: "@nada",
         projectName: "wosul",
         describtion:
-            "I'm building a mobil app that connects to Spotify and uses AI to generate unique visuals based on what you're listening to. I'm planning on using a react frontend, with rust on the back.",
+            "I'm building a mobile app that connects to Spotify and uses AI to generate unique visuals based on what you're listening to. I'm planning on using a react frontend, with rust on the back.",
         language: "flutter",
         teamNum: "4",
         projrctType: "mobile"),
@@ -74,7 +74,7 @@ class JoinScreen extends StatelessWidget {
           title: const Row(
             children: [
               const Text(
-                "announcements",
+                "Available Projects",
                 style: TextStyle(
                     fontSize: 32,
                     fontWeight: FontWeight.bold,
