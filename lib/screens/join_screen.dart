@@ -73,7 +73,7 @@ class JoinScreen extends StatelessWidget {
           toolbarHeight: 88,
           title: const Row(
             children: [
-              const Text(
+              Text(
                 "Available Projects",
                 style: TextStyle(
                     fontSize: 32,

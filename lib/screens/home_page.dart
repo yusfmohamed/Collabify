@@ -146,7 +146,7 @@ class _HomePageState extends State<HomePage> {
                   onTap: () {
                     Navigator.push(context,
                         MaterialPageRoute(builder: (BuildContext context) {
-                      return JoinScreen();
+                      return const JoinScreen();
                     }));
                     // Navigate to join project screen
                   },
