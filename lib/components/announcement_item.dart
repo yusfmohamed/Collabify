@@ -2,14 +2,8 @@ import 'package:collabify/models/announcement.dart';
 import 'package:flutter/material.dart';
 
 class AnnouncementItem extends StatelessWidget {
-   AnnouncementItem({required this.announcement  });
+  AnnouncementItem({required this.announcement});
 
-  //  String? uaserName;
-  //  String? projectName;
-  //  String? describtion;
-  //  String? language;
-  //  String? teamNum;
-  //  String? projrctType;
 
   final Announcement announcement;
 
@@ -32,7 +26,7 @@ class AnnouncementItem extends StatelessWidget {
         ],
       ),
 
-      child:  Column(
+      child: Column(
         //crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Row(
@@ -78,7 +72,7 @@ class AnnouncementItem extends StatelessWidget {
             ),
           ),
           Text(
-           announcement.describtion,
+            announcement.describtion,
             maxLines: 3,
             overflow: TextOverflow.ellipsis,
             style: TextStyle(
@@ -90,10 +84,11 @@ class AnnouncementItem extends StatelessWidget {
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 30, vertical: 6),
             child: Row(
-              //mainAxisSize: MainAxisSize.min,
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                 announcement.language,
+                  announcement.language,
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 18,
@@ -104,7 +99,7 @@ class AnnouncementItem extends StatelessWidget {
                   flex: 1,
                 ),
                 Icon(
-                  Icons.person,
+                  Icons.people_alt,
                   color: Colors.white,
                 ),
                 Text(

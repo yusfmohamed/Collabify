@@ -14,6 +14,7 @@ class CollabifyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Collabify',
       theme: AppTheme.theme,
+      
       initialRoute: AppRoutes.splash,
       routes: AppRoutes.routes,
       onGenerateRoute: AppRoutes.onGenerateRoute, // ⚠️ ADD THIS LINE

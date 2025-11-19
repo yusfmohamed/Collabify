@@ -2,7 +2,8 @@ import 'dart:ui';
 
 import 'package:collabify/components/announcement_item.dart';
 import 'package:collabify/models/announcement.dart';
-import 'package:collabify/widgets/gradient_background.dart';
+import 'package:collabify/screens/announcement_detail_screen.dart';
+
 import 'package:flutter/material.dart';
 
 class JoinScreen extends StatelessWidget {
@@ -11,7 +12,7 @@ class JoinScreen extends StatelessWidget {
   final List<Announcement> announcements = const [
     Announcement(
         uaserName: "@nada",
-        projectName: "wosul",
+        projectName: "Wusol",
         describtion:
             "I'm building a mobil app that connects to Spotify and uses AI to generate unique visuals based on what you're listening to. I'm planning on using a react frontend, with rust on the back.",
         language: "flutter",
@@ -19,7 +20,7 @@ class JoinScreen extends StatelessWidget {
         projrctType: "mobile"),
     Announcement(
         uaserName: "@yusf",
-        projectName: "collabify",
+        projectName: "Collabify",
         describtion:
             "I'm building a web app that connects to Spotify and uses AI to generate unique visuals based on what you're listening to. I'm planning on using a react frontend, with rust on the back.",
         language: "react",
@@ -27,7 +28,7 @@ class JoinScreen extends StatelessWidget {
         projrctType: "web"),
     Announcement(
         uaserName: "@jana",
-        projectName: "study tracking app",
+        projectName: "Study Tracking App",
         describtion:
             "I'm working on a mobile app for helping track study patterns. The goal is to have something similar to quizlet, but simpler and easier to navigate.",
         language: "kotlin",
@@ -35,7 +36,7 @@ class JoinScreen extends StatelessWidget {
         projrctType: "mobile"),
     Announcement(
         uaserName: "@maya",
-        projectName: "AI crypto tool",
+        projectName: "AI Crypto Tool",
         describtion:
             "been reading about crypto prediction and ML stuff. want to make a basic tool using past prices to spot patterns.",
         language: "python",
@@ -98,23 +99,31 @@ class JoinScreen extends StatelessWidget {
             ),
           ),
         ),
-         body: ListView.separated(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),  // Adds horizontal margins and top/bottom padding
-          itemCount: announcements.length,
-          itemBuilder: (context, index) {
-            return Center(  // Centers the item horizontally, keeping its fixed width
+        body:  ListView.separated(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        itemCount: announcements.length,
+        itemBuilder: (context, index) {
+          return InkWell(  // Wrap with InkWell for tapability and ripple effect
+            onTap: () {
+              // Navigate to the details screen and pass the announcement
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => AnnouncementDetailScreen(
+                    announcement: announcements[index],
+                  ),
+                ),
+              );
+            },
+            child: Center(
               child: AnnouncementItem(announcement: announcements[index]),
-            );
-          },
-          separatorBuilder: (context, index) {
-            return const SizedBox(height: 16);  // Adds 16px vertical space between items
-          },
-        ),
-        // body: ListView(
-        //   children: 
-        //     getList(announcements)
-        //   ,
-        // ),
+            ),
+          );
+        },
+        separatorBuilder: (context, index) {
+          return const SizedBox(height: 16);
+        },
+      ),
       ),
     );
   }
