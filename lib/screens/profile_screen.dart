@@ -33,7 +33,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
   }
 
   Future<void> _launchURL(String url) async {
-    // Add https:// if not present
     String finalUrl = url;
     if (!url.startsWith('http://') && !url.startsWith('https://')) {
       finalUrl = 'https://$url';
@@ -331,25 +330,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Container(
-              padding: const EdgeInsets.all(4),
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                gradient: LinearGradient(
-                  colors: [
-                    const Color(0xFFFBBF24),
-                    const Color(0xFFFBBF24).withOpacity(0.5),
-                  ],
-                ),
-              ),
-              child: const CircleAvatar(
-                radius: 60,
-                backgroundColor: Colors.white,
-                child: Icon(
-                  Icons.person,
-                  size: 60,
-                  color: Color(0xFF6B2FD9),
-                ),
+            const CircleAvatar(
+              radius: 60,
+              backgroundColor: Colors.white,
+              child: Icon(
+                Icons.person,
+                size: 60,
+                color: Color(0xFF6B2FD9),
               ),
             ),
             const SizedBox(height: 20),
@@ -379,7 +366,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ).then((_) => _loadProfile());
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xFFFBBF24),
+                backgroundColor: const Color(0xFFFFD700),
                 padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(25),
@@ -388,7 +375,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               child: const Text(
                 'Complete Profile',
                 style: TextStyle(
-                  color: Color(0xFF4A148C),
+                  color: Colors.black,
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
                 ),
@@ -401,7 +388,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   }
 
   Widget _buildProfileContent() {
-    return Stack(
+    return Column(
       children: [
         SingleChildScrollView(
           child: Padding(
@@ -426,14 +413,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         child: Container(
                           padding: const EdgeInsets.all(8),
                           decoration: BoxDecoration(
-                            color: const Color(0xFFFBBF24),
+                            color: const Color(0xFFFFD700),
                             shape: BoxShape.circle,
                             border: Border.all(color: Colors.white, width: 2),
                           ),
                           child: const Icon(
                             Icons.camera_alt,
                             size: 20,
-                            color: Color(0xFF4A148C),
+                            color: Colors.black,
                           ),
                         ),
                       ),
@@ -458,23 +445,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   '@${widget.username}',
                   style: const TextStyle(
                     fontSize: 16,
-                    color: Color(0xFFFBBF24),
-                    fontWeight: FontWeight.w500,
+                    color: Colors.white70,
                   ),
                 ),
-                const SizedBox(height: 25),
+                const SizedBox(height: 20),
 
                 // Info Cards Container
                 Container(
                   margin: const EdgeInsets.symmetric(horizontal: 20),
                   padding: const EdgeInsets.all(25),
                   decoration: BoxDecoration(
-                    color: Colors.white.withOpacity(0.15),
+                    color: AppColors.cardBackground.withOpacity(0.95),
                     borderRadius: BorderRadius.circular(25),
-                    border: Border.all(
-                      color: Colors.white.withOpacity(0.3),
-                      width: 1,
-                    ),
                   ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -485,7 +467,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         title: 'Bio',
                         content: _profileData!.bio,
                       ),
-                      const Divider(height: 30, color: Colors.white30),
+                      const Divider(height: 30, color: Colors.white24),
 
                       // Nationality Section
                       _buildInfoSection(
@@ -493,15 +475,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         title: 'Nationality',
                         content: _profileData!.nationality,
                       ),
-                      const Divider(height: 30, color: Colors.white30),
+                      const Divider(height: 30, color: Colors.white24),
 
-                      // Interest Section
-                      _buildInfoSection(
-                        icon: Icons.favorite_outline,
-                        title: 'Interest',
-                        content: _profileData!.interest,
-                      ),
-                      const SizedBox(height: 15),
+                        // Interest Section
+                        _buildInfoSection(
+                          icon: Icons.favorite_outline,
+                          title: 'Interest',
+                          content: _profileData!.interest,
+                        ),
+                        const SizedBox(height: 15),
 
                       // Hashtags
                       Wrap(
@@ -514,71 +496,131 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               vertical: 6,
                             ),
                             decoration: BoxDecoration(
-                              color: const Color(0xFFFBBF24).withOpacity(0.2),
+                              color: const Color(0xFF6B2FD9).withOpacity(0.3),
                               borderRadius: BorderRadius.circular(15),
                               border: Border.all(
-                                color: const Color(0xFFFBBF24),
-                                width: 1.5,
+                                color: const Color(0xFFFFD700),
+                                width: 1,
                               ),
                             ),
                             child: Text(
                               '#$tag',
                               style: const TextStyle(
-                                color: Color(0xFFFBBF24),
+                                color: Color(0xFFFFD700),
                                 fontSize: 14,
-                                fontWeight: FontWeight.w600,
+                                fontWeight: FontWeight.w500,
                               ),
                             ),
                           );
                         }).toList(),
                       ),
-                      const Divider(height: 30, color: Colors.white30),
+                      const Divider(height: 30, color: Colors.white24),
 
-                      // Portfolio Link
-                      _buildPortfolioLink(),
-                    ],
-                  ),
-                ),
-                const SizedBox(height: 20),
-
-                // Projects Section
-                _buildProjectsSection(),
-                const SizedBox(height: 20),
-
-                // Edit Profile Button
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 40),
-                  child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.pushNamed(
-                        context,
-                        '/profile-info',
-                        arguments: {'username': widget.username},
-                      ).then((_) => _loadProfile());
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xFFFBBF24),
-                      padding: const EdgeInsets.symmetric(vertical: 15),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(25),
-                      ),
-                      minimumSize: const Size(double.infinity, 50),
-                    ),
-                    child: const Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(Icons.edit, color: Color(0xFF4A148C), size: 20),
-                        SizedBox(width: 8),
-                        Text(
-                          'Edit Profile',
-                          style: TextStyle(
-                            color: Color(0xFF4A148C),
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
+                        // Portfolio Link
+                        _buildPortfolioLink(),
                       ],
                     ),
+                  ),
+                  
+                  const SizedBox(height: 25),
+
+                // Action Buttons
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 40),
+                  child: Column(
+                    children: [
+                      // Edit Profile Button
+                      ElevatedButton(
+                        onPressed: () {
+                          Navigator.pushNamed(
+                            context,
+                            '/profile-info',
+                            arguments: {'username': widget.username},
+                          ).then((_) => _loadProfile());
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: const Color(0xFFFFD700),
+                          padding: const EdgeInsets.symmetric(vertical: 15),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(25),
+                          ),
+                          minimumSize: const Size(double.infinity, 50),
+                        ),
+                        child: const Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(Icons.edit, color: Colors.black, size: 20),
+                            SizedBox(width: 8),
+                            Text(
+                              'Edit Profile',
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(height: 12),
+
+                      // Logout Button
+                      OutlinedButton(
+                        onPressed: _showLogoutDialog,
+                        style: OutlinedButton.styleFrom(
+                          side: const BorderSide(color: Colors.orange, width: 2),
+                          padding: const EdgeInsets.symmetric(vertical: 15),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(25),
+                          ),
+                          minimumSize: const Size(double.infinity, 50),
+                        ),
+                        child: const Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(Icons.logout, color: Colors.orange, size: 20),
+                            SizedBox(width: 8),
+                            Text(
+                              'Logout',
+                              style: TextStyle(
+                                color: Colors.orange,
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(height: 12),
+
+                      // Delete Profile Button
+                      OutlinedButton(
+                        onPressed: _showDeleteProfileDialog,
+                        style: OutlinedButton.styleFrom(
+                          side: const BorderSide(color: Colors.red, width: 2),
+                          padding: const EdgeInsets.symmetric(vertical: 15),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(25),
+                          ),
+                          minimumSize: const Size(double.infinity, 50),
+                        ),
+                        child: const Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(Icons.delete_forever, color: Colors.red, size: 20),
+                            SizedBox(width: 8),
+                            Text(
+                              'Delete Profile',
+                              style: TextStyle(
+                                color: Colors.red,
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ],
@@ -586,24 +628,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ),
         ),
         
-        // Settings button in top right
+        // Settings/Options button in top right
         Positioned(
           top: 10,
           right: 10,
           child: IconButton(
             onPressed: _showOptionsMenu,
-            icon: Container(
-              padding: const EdgeInsets.all(8),
-              decoration: BoxDecoration(
-                color: Colors.white.withOpacity(0.2),
-                borderRadius: BorderRadius.circular(12),
-                border: Border.all(
-                  color: Colors.white.withOpacity(0.3),
-                  width: 1,
-                ),
-              ),
-              child: const Icon(Icons.settings, color: Colors.white, size: 24),
-            ),
+            icon: const Icon(Icons.more_vert, color: Colors.white, size: 28),
           ),
         ),
       ],
@@ -625,7 +656,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ),
         ),
         child: CircleAvatar(
-          radius: 60,
+          radius: 50,
           backgroundImage: FileImage(File(_profileData!.profilePhotoPath!)),
           backgroundColor: Colors.white,
         ),
@@ -643,11 +674,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ),
         ),
         child: const CircleAvatar(
-          radius: 60,
+          radius: 50,
           backgroundColor: Colors.white,
           child: Icon(
             Icons.person,
-            size: 60,
+            size: 50,
             color: Color(0xFF6B2FD9),
           ),
         ),

@@ -2,7 +2,7 @@ import 'package:collabify/models/announcement.dart';
 import 'package:flutter/material.dart';
 
 class AnnouncementItem extends StatelessWidget {
-  AnnouncementItem({required this.announcement});
+   const AnnouncementItem({super.key, required this.announcement  });
 
 
   final Announcement announcement;
@@ -22,7 +22,7 @@ class AnnouncementItem extends StatelessWidget {
           BoxShadow(
               color: Colors.black.withOpacity(0.4),
               blurRadius: 8,
-              offset: Offset(0, 4)),
+              offset: const Offset(0, 4)),
         ],
       ),
 
@@ -31,7 +31,7 @@ class AnnouncementItem extends StatelessWidget {
         children: [
           Row(
             children: [
-              CircleAvatar(
+              const CircleAvatar(
                 radius: 14,
                 backgroundColor: Color(0xff8E7CA0),
                 child: Icon(
@@ -39,21 +39,21 @@ class AnnouncementItem extends StatelessWidget {
                   color: Color(0xffBEA5D3),
                 ),
               ),
-              Spacer(
+              const Spacer(
                 flex: 1,
               ),
               Text(
                 announcement.uaserName,
-                style: TextStyle(
+                style: const TextStyle(
                   color: Color(0xff8E7CA0),
                   fontWeight: FontWeight.bold,
                   fontSize: 14,
                 ),
               ),
-              Spacer(
+              const Spacer(
                 flex: 10,
               ),
-              Text(
+              const Text(
                 "11mo",
                 style: TextStyle(
                   color: Color(0xff8E7CA0),
@@ -65,7 +65,7 @@ class AnnouncementItem extends StatelessWidget {
           ),
           Text(
             announcement.projectName,
-            style: TextStyle(
+            style: const TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 22,
               color: Colors.white,
@@ -75,14 +75,14 @@ class AnnouncementItem extends StatelessWidget {
             announcement.describtion,
             maxLines: 3,
             overflow: TextOverflow.ellipsis,
-            style: TextStyle(
+            style: const TextStyle(
               //fontWeight: FontWeight.bold,
               fontSize: 20,
               color: Color(0xff8E7CA0),
             ),
           ),
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 30, vertical: 6),
+            padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 6),
             child: Row(
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.center,
@@ -95,7 +95,7 @@ class AnnouncementItem extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                Spacer(
+                const Spacer(
                   flex: 1,
                 ),
                 Icon(
@@ -104,18 +104,18 @@ class AnnouncementItem extends StatelessWidget {
                 ),
                 Text(
                   announcement.teamNum,
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Colors.white,
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                Spacer(
+                const Spacer(
                   flex: 1,
                 ),
                 Text(
                   announcement.projrctType,
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Colors.white,
                     fontSize: 18,
                     fontWeight: FontWeight.bold,

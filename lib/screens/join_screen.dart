@@ -14,7 +14,7 @@ class JoinScreen extends StatelessWidget {
         uaserName: "@nada",
         projectName: "Wusol",
         describtion:
-            "I'm building a mobil app that connects to Spotify and uses AI to generate unique visuals based on what you're listening to. I'm planning on using a react frontend, with rust on the back.",
+            "I'm building a mobile app that connects to Spotify and uses AI to generate unique visuals based on what you're listening to. I'm planning on using a react frontend, with rust on the back.",
         language: "flutter",
         teamNum: "4",
         projrctType: "mobile"),
@@ -74,8 +74,8 @@ class JoinScreen extends StatelessWidget {
           toolbarHeight: 88,
           title: const Row(
             children: [
-              const Text(
-                "announcements",
+              Text(
+                "Available Projects",
                 style: TextStyle(
                     fontSize: 32,
                     fontWeight: FontWeight.bold,
