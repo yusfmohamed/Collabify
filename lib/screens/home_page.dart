@@ -1,3 +1,4 @@
+import 'package:collabify/screens/host_screen.dart';
 import 'package:collabify/screens/join_screen.dart';
 import 'package:flutter/material.dart';
 import 'about_screen.dart';
@@ -126,7 +127,11 @@ class _HomePageState extends State<HomePage> {
                     colors: [Color(0xFFFB923C), Color(0xFFF97316)],
                   ),
                   onTap: () {
-                    // Navigate to post project screen
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (BuildContext context) {
+                      return const HostScreen();
+                    }));
+                    // Navigate to join project screen
                   },
                 ),
               ),

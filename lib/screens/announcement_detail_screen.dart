@@ -145,6 +145,7 @@ class AnnouncementDetailScreen extends StatelessWidget {
                           SnackBar(
                             content: Text('Join request sent!'),
                             duration: Duration(seconds: 2),
+                            
                           ),
                         );
                       },
