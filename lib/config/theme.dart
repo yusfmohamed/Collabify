@@ -76,6 +76,7 @@ class AppTheme {
       primaryColor: AppColors.primaryPurple,
       scaffoldBackgroundColor: Colors.transparent,  // Updated: Ensures global transparent background
       fontFamily: 'Roboto',
+      
       useMaterial3: true,
     );
   }

@@ -4,12 +4,6 @@ import 'package:flutter/material.dart';
 class AnnouncementItem extends StatelessWidget {
    const AnnouncementItem({super.key, required this.announcement  });
 
-  //  String? uaserName;
-  //  String? projectName;
-  //  String? describtion;
-  //  String? language;
-  //  String? teamNum;
-  //  String? projrctType;
 
   final Announcement announcement;
 
@@ -32,7 +26,7 @@ class AnnouncementItem extends StatelessWidget {
         ],
       ),
 
-      child:  Column(
+      child: Column(
         //crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Row(
@@ -78,7 +72,7 @@ class AnnouncementItem extends StatelessWidget {
             ),
           ),
           Text(
-           announcement.describtion,
+            announcement.describtion,
             maxLines: 3,
             overflow: TextOverflow.ellipsis,
             style: const TextStyle(
@@ -90,11 +84,12 @@ class AnnouncementItem extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 6),
             child: Row(
-              //mainAxisSize: MainAxisSize.min,
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                 announcement.language,
-                  style: const TextStyle(
+                  announcement.language,
+                  style: TextStyle(
                     color: Colors.white,
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
@@ -103,8 +98,8 @@ class AnnouncementItem extends StatelessWidget {
                 const Spacer(
                   flex: 1,
                 ),
-                const Icon(
-                  Icons.person,
+                Icon(
+                  Icons.people_alt,
                   color: Colors.white,
                 ),
                 Text(

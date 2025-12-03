@@ -1,3 +1,6 @@
+import 'package:collabify/components/friends_tab.dart';
+import 'package:collabify/components/request_tab.dart';
+import 'package:collabify/components/search_tab.dart';
 import 'package:flutter/material.dart';
 
 class FriendsScreen extends StatelessWidget {
@@ -5,48 +8,53 @@ class FriendsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white, // ✅ Solid white background
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.only(bottom: 80.0),
-          child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  padding: const EdgeInsets.all(30),
-                  decoration: const BoxDecoration(
-                    color: Color(0xFF6B2FD9),
-                    shape: BoxShape.circle,
+    return DefaultTabController(
+      length: 3,
+      initialIndex: 0,
+      child: Scaffold(
+        backgroundColor: Color(0xffF7F3E7),
+        appBar: AppBar(
+          centerTitle: true,
+          toolbarHeight: 100,
+          backgroundColor: const Color(0xFF6B2FD9),
+          title: Text(
+            "Friends",
+            style: TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+          bottom: PreferredSize(
+            preferredSize: Size.fromHeight(48),
+            child: Container(
+              color: Color(0xffF7F3E7),
+              child: const TabBar(    
+                indicatorColor: Colors.orange,
+                labelColor: Color(0xff6E3CA4),
+                unselectedLabelColor: Colors.grey,
+                tabs: [
+                    Tab(
+                    icon: Icon(Icons.people_alt),
+                    text: 'Friends',
                   ),
-                  child: const Icon(
-                    Icons.people,
-                    size: 80,
-                    color: Colors.white,
+                  Tab(
+                    icon: Icon(Icons.notifications),
+                    text: 'Requests',
                   ),
-                ),
-                const SizedBox(height: 30),
-                const Text(
-                  'Friends',
-                  style: TextStyle(
-                    fontSize: 32,
-                    fontWeight: FontWeight.bold,
-                    color: Color(0xFF4A148C),
+                  Tab(
+                    icon: Icon(Icons.search),
+                    text: 'Search',
                   ),
-                ),
-                const SizedBox(height: 10),
-                Text(
-                  'Connect with your collaborators',
-                  style: TextStyle(
-                    fontSize: 16,
-                    color: Colors.grey[700],
-                  ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),
+        body: const TabBarView(children: [
+          FriendsTab(),
+          RequestTab(),
+          SearchTab(),
+        ],),
       ),
     );
   }

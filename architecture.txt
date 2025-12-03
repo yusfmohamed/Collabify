@@ -12,7 +12,8 @@ lib/
 │   ├── dropdown_field.dart
 │   └── interest_input_field.dart
 ├── components/
-│   └── announcement_item.dart
+│   ├── announcement_item.dart
+│   └── small_box.dart
 ├── models/
 │   └── announcement.dart
 ├── services/
@@ -28,4 +29,5 @@ lib/
     ├── chat_screen.dart 
     ├── profile_screen.dart
     ├── about_screen.dart
+    ├── announcement_detail_screen.dart
     └── join_screen.dart
