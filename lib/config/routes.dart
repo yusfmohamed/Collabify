@@ -5,15 +5,16 @@ import '../screens/sign_up_screen.dart';
 import '../screens/main_navigation.dart';
 import '../screens/about_screen.dart';
 import '../screens/profile_info_screen.dart';
-import '../screens/settings_screen.dart';
+import '../screens/onboarding_screen.dart'; // NEW IMPORT
+
 class AppRoutes {
   static const String splash = '/';
   static const String signIn = '/sign-in';
   static const String signUp = '/sign-up';
   static const String home = '/home';
   static const String about = '/about';
-  static const String settings = '/settings';
   static const String profileInfo = '/profile-info';
+  static const String onboarding = '/onboarding'; // NEW ROUTE
 
   static Map<String, WidgetBuilder> get routes {
     return {
@@ -21,7 +22,6 @@ class AppRoutes {
       signIn: (context) => SignInScreen(),
       signUp: (context) => const SignUpScreen(),
       about: (context) => const AboutScreen(),
-      settings: (context) => const SettingsScreen(),
       // Routes with parameters use onGenerateRoute
     };
   }
@@ -43,6 +43,15 @@ class AppRoutes {
       final username = args?['username'] ?? 'Guest';
       return MaterialPageRoute(
         builder: (context) => ProfileInfoScreen(username: username),
+      );
+    }
+
+    // Onboarding route with username (NEW)
+    if (settings.name == onboarding) {
+      final args = settings.arguments as Map<String, dynamic>?;
+      final username = args?['username'] ?? 'Guest';
+      return MaterialPageRoute(
+        builder: (context) => OnboardingScreen(username: username),
       );
     }
     

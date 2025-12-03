@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../config/theme.dart';
-import '../screens/profile_info_screen.dart';
+import '../screens/onboarding_screen.dart'; // NEW IMPORT
 import '../widgets/gradient_background.dart';
 import '../widgets/custom_textfield.dart';
 import '../widgets/custom_button.dart';
@@ -36,11 +36,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
         passwordError = 'Passwords do not match!';
       } else {
         passwordError = null;
-        // Navigate to profile info screen and pass the username
-        Navigator.push(
+        // Navigate to ONBOARDING screen first (CHANGED)
+        Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-            builder: (context) => ProfileInfoScreen(
+            builder: (context) => OnboardingScreen(
               username: usernameController.text,
             ),
           ),
