@@ -17,23 +17,23 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     OnboardingPage(
       title: 'Welcome to Collabify! 🎉',
       description: 'Connect with talented individuals and bring your creative projects to life together',
-      icon: Icons.rocket_launch,
+      icon: Icons.groups,
       gradient: const LinearGradient(
-        colors: [Color(0xFFFB923C), Color(0xFFF97316)],
+        colors: [Color(0xFF6B2FD9), Color(0xFF4A148C)],
       ),
     ),
     OnboardingPage(
       title: 'Host Your Projects 🚀',
       description: 'Start your own projects and gather a team of skilled collaborators to make your vision a reality',
-      icon: Icons.palette,
+      icon: Icons.rocket_launch,
       items: [
-        'Graphic Design',
-        'Programming',
-        'Video Editing',
-        'Innovation Projects',
+        OnboardingItem(text: 'Graphic Design', icon: Icons.palette),
+        OnboardingItem(text: 'Programming', icon: Icons.computer),
+        OnboardingItem(text: 'Video Editing', icon: Icons.videocam),
+        OnboardingItem(text: 'Innovation Projects', icon: Icons.lightbulb),
       ],
       gradient: const LinearGradient(
-        colors: [Color(0xFF6B2FD9), Color(0xFF4A148C)],
+        colors: [Color(0xFFFB923C), Color(0xFFF97316)],
       ),
     ),
     OnboardingPage(
@@ -41,19 +41,19 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       description: 'Discover projects that match your skills and interests. Collaborate with passionate creators',
       icon: Icons.handshake,
       items: [
-        'Find projects you love',
-        'Contribute your talents',
-        'Build your portfolio',
-        'Grow your network',
+        OnboardingItem(text: 'Find projects you love', icon: Icons.search),
+        OnboardingItem(text: 'Contribute your talents', icon: Icons.star),
+        OnboardingItem(text: 'Build your portfolio', icon: Icons.work),
+        OnboardingItem(text: 'Grow your network', icon: Icons.people),
       ],
       gradient: const LinearGradient(
-        colors: [Color(0xFF00BCD4), Color(0xFF0097A7)],
+        colors: [Color(0xFF6B2FD9), Color(0xFF4A148C)],
       ),
     ),
     OnboardingPage(
       title: 'Let\'s Get Started! ✨',
       description: 'Complete your profile and start your collaboration journey today',
-      icon: Icons.stars,
+      icon: Icons.celebration,
       gradient: const LinearGradient(
         colors: [Color(0xFFFB923C), Color(0xFFF97316)],
       ),
@@ -92,19 +92,51 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
   @override
   Widget build(BuildContext context) {
+    // Use AboutScreen gradient colors
+    Gradient backgroundGradient;
+    if (_currentPage == 1) {
+      // Host page - Orange gradient background (from AboutScreen)
+      backgroundGradient = const LinearGradient(
+        begin: Alignment.topCenter,
+        end: Alignment.bottomCenter,
+        colors: [
+          Color(0xFF4A148C),
+          Color(0xFF5E35B1),
+          Color(0xFF00BCD4),
+        ],
+        stops: [0.0, 0.5, 1.0],
+      );
+    } else if (_currentPage == 2) {
+      // Join page - Purple gradient background (from AboutScreen)
+      backgroundGradient = const LinearGradient(
+        begin: Alignment.topCenter,
+        end: Alignment.bottomCenter,
+        colors: [
+          Color(0xFF4A148C),
+          Color(0xFF5E35B1),
+          Color(0xFF00BCD4),
+        ],
+        stops: [0.0, 0.5, 1.0],
+      );
+    } else {
+      // Default gradient for Welcome and Get Started pages (from AboutScreen)
+      backgroundGradient = const LinearGradient(
+        begin: Alignment.topCenter,
+        end: Alignment.bottomCenter,
+        colors: [
+          Color(0xFF4A148C),
+          Color(0xFF5E35B1),
+          Color(0xFF00BCD4),
+        ],
+        stops: [0.0, 0.5, 1.0],
+      );
+    }
+
     return Scaffold(
-      body: Container(
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [
-              Color(0xFF4A148C),
-              Color(0xFF5E35B1),
-              Color(0xFF00BCD4),
-            ],
-            stops: [0.0, 0.5, 1.0],
-          ),
+      body: AnimatedContainer(
+        duration: const Duration(milliseconds: 400),
+        decoration: BoxDecoration(
+          gradient: backgroundGradient,
         ),
         child: SafeArea(
           child: Column(
@@ -308,7 +340,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     );
   }
 
-  Widget _buildFeatureItem(String text, int index, Gradient gradient) {
+  Widget _buildFeatureItem(OnboardingItem item, int index, Gradient gradient) {
     return TweenAnimationBuilder(
       duration: Duration(milliseconds: 500 + (index * 100)),
       tween: Tween<double>(begin: 0.0, end: 1.0),
@@ -318,39 +350,39 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           child: Transform.translate(
             offset: Offset(0, 20 * (1 - value)),
             child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
               decoration: BoxDecoration(
                 gradient: gradient,
                 borderRadius: BorderRadius.circular(20),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.black.withOpacity(0.2),
-                    blurRadius: 10,
-                    offset: const Offset(0, 5),
+                    color: Colors.black.withOpacity(0.3),
+                    blurRadius: 12,
+                    offset: const Offset(0, 6),
                   ),
                 ],
               ),
               child: Row(
                 children: [
                   Container(
-                    padding: const EdgeInsets.all(8),
+                    padding: const EdgeInsets.all(12),
                     decoration: BoxDecoration(
                       color: Colors.white.withOpacity(0.3),
-                      borderRadius: BorderRadius.circular(10),
+                      borderRadius: BorderRadius.circular(12),
                     ),
-                    child: const Icon(
-                      Icons.check_circle,
+                    child: Icon(
+                      item.icon,
                       color: Colors.white,
-                      size: 24,
+                      size: 32,
                     ),
                   ),
                   const SizedBox(width: 16),
                   Expanded(
                     child: Text(
-                      text,
+                      item.text,
                       style: const TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
                         color: Colors.white,
                       ),
                     ),
@@ -384,7 +416,7 @@ class OnboardingPage {
   final String title;
   final String description;
   final IconData icon;
-  final List<String>? items;
+  final List<OnboardingItem>? items;
   final Gradient gradient;
 
   OnboardingPage({
@@ -393,5 +425,15 @@ class OnboardingPage {
     required this.icon,
     this.items,
     required this.gradient,
+  });
+}
+
+class OnboardingItem {
+  final String text;
+  final IconData icon;
+
+  OnboardingItem({
+    required this.text,
+    required this.icon,
   });
 }

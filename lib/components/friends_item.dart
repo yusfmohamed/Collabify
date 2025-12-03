@@ -7,13 +7,15 @@ class FriendsItem extends StatelessWidget {
       required this.name,
       required this.username,
       required this.color,
-      required this.status,required this.statusColor});
+      required this.status,
+      required this.statusColor});
   final String? letter;
   final String? name;
   final String? username;
   final Color? color;
   final String status;
   final Color? statusColor;
+  
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -44,7 +46,7 @@ class FriendsItem extends StatelessWidget {
                   ),
                   shape: BoxShape.circle,
                   border: Border.all(
-                    color: Colors.white, // to create a clean ring
+                    color: Colors.white,
                     width: 3,
                   ),
                 ),
@@ -67,10 +69,10 @@ class FriendsItem extends StatelessWidget {
                   width: 16,
                   height: 16,
                   decoration: BoxDecoration(
-                    color: color, // online color
+                    color: color,
                     shape: BoxShape.circle,
                     border: Border.all(
-                      color: Colors.white, // to create a clean ring
+                      color: Colors.white,
                       width: 2,
                     ),
                   ),
@@ -79,49 +81,49 @@ class FriendsItem extends StatelessWidget {
             ],
           ),
           SizedBox(
-            width: 8,
+            width: 12,
           ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                name!,
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 18,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-              Text(
-                username!,
-                style: TextStyle(
-                  color: Colors.grey,
-                  fontSize: 11,
-                ),
-              ),
-              Row(
-                children: [
-                  Icon(
-                    Icons.circle_rounded,
-                    size: 5,
-                    color: statusColor,
+          Expanded(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  name!,
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 18,
+                    fontWeight: FontWeight.w500,
                   ),
-                  SizedBox(
-                    width: 3,
+                ),
+                Text(
+                  username!,
+                  style: TextStyle(
+                    color: Colors.grey,
+                    fontSize: 11,
                   ),
-                  Text(
-                    status,
-                    style: TextStyle(
-                      color: Colors.grey,
-                      fontSize: 8,
+                ),
+                Row(
+                  children: [
+                    Icon(
+                      Icons.circle_rounded,
+                      size: 5,
+                      color: statusColor,
                     ),
-                  ),
-                ],
-              ),
-            ],
-          ),
-          Spacer(
-            flex: 1,
+                    SizedBox(
+                      width: 3,
+                    ),
+                    Text(
+                      status,
+                      style: TextStyle(
+                        color: Colors.grey,
+                        fontSize: 8,
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
           Icon(Icons.more_horiz_rounded),
         ],
