@@ -2,7 +2,7 @@ import 'package:collabify/screens/host_screen.dart';
 import 'package:collabify/screens/join_screen.dart';
 import 'package:collabify/icons/activity_screen.dart';  // Added import for ActivityScreen
 import 'package:flutter/material.dart';
-import 'about_screen.dart';
+import '../icons/about_screen.dart';
 // import 'settings_screen.dart';
 
 class HomePage extends StatefulWidget {

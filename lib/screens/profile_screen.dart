@@ -200,18 +200,22 @@ class _ProfileScreenState extends State<ProfileScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Container(
-              width: 140,
-              height: 140,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                border: Border.all(color: const Color(0xFF6B2FD9), width: 3),
-                color: const Color(0xFF6B2FD9),
-              ),
-              child: const Center(
-                child: Text('Y', style: TextStyle(fontSize: 60, color: Colors.white, fontWeight: FontWeight.bold)),
-              ),
-            ),
+Container(
+  width: 140,
+  height: 140,
+  decoration: BoxDecoration(
+    shape: BoxShape.circle,
+    border: Border.all(color: const Color(0xFF6B2FD9), width: 3),
+    color: const Color(0xFF6B2FD9),
+  ),
+  child: const Center(
+    child: Icon(
+      Icons.person,
+      size: 60,
+      color: Colors.white,
+    ),
+  ),
+),
             const SizedBox(height: 20),
             Text(widget.username, style: const TextStyle(fontSize: 32, fontWeight: FontWeight.bold, color: Colors.black)),
             const SizedBox(height: 10),

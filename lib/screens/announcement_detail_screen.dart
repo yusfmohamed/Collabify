@@ -54,7 +54,14 @@ class AnnouncementDetailScreen extends StatelessWidget {
                         ),
                         InkWell(
                           onTap: () {
-                            // Placeholder for user tap action
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => UsernameProfileScreen(
+                                  username: announcement.userName,
+                                ),
+                              ),
+                            );
                           },
                           child: Text(
                             ' ${announcement.userName}',  // Fixed

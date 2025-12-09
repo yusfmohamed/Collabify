@@ -3,7 +3,7 @@ import '../screens/splash_screen.dart';
 import '../screens/sign_in_screen.dart';
 import '../screens/sign_up_screen.dart';
 import '../screens/main_navigation.dart';
-import '../screens/about_screen.dart';
+import '../icons/about_screen.dart';
 import '../screens/profile_info_screen.dart';
 import '../screens/onboarding_screen.dart'; // NEW IMPORT
 
