@@ -2,32 +2,28 @@ import 'package:collabify/models/announcement.dart';
 import 'package:flutter/material.dart';
 
 class AnnouncementItem extends StatelessWidget {
-   const AnnouncementItem({super.key, required this.announcement  });
-
+  const AnnouncementItem({super.key, required this.announcement});
 
   final Announcement announcement;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      //alignment: Alignment.center,
       width: 358,
       height: 220,
       padding: const EdgeInsets.all(16),
-      //color: Colors.blueAccent,
       decoration: BoxDecoration(
         color: const Color(0xff532B77),
         borderRadius: BorderRadius.circular(16),
         boxShadow: [
           BoxShadow(
-              color: Colors.black.withOpacity(0.4),
-              blurRadius: 8,
-              offset: const Offset(0, 4)),
+            color: Colors.black.withOpacity(0.4),
+            blurRadius: 8,
+            offset: const Offset(0, 4),
+          ),
         ],
       ),
-
       child: Column(
-        //crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Row(
             children: [
@@ -39,20 +35,16 @@ class AnnouncementItem extends StatelessWidget {
                   color: Color(0xffBEA5D3),
                 ),
               ),
-              const Spacer(
-                flex: 1,
-              ),
+              const Spacer(flex: 1),
               Text(
-                announcement.uaserName,
+                announcement.userName,  // Fixed
                 style: const TextStyle(
                   color: Color(0xff8E7CA0),
                   fontWeight: FontWeight.bold,
                   fontSize: 14,
                 ),
               ),
-              const Spacer(
-                flex: 10,
-              ),
+              const Spacer(flex: 10),
               const Text(
                 "11mo",
                 style: TextStyle(
@@ -72,11 +64,10 @@ class AnnouncementItem extends StatelessWidget {
             ),
           ),
           Text(
-            announcement.describtion,
+            announcement.description,  // Fixed
             maxLines: 3,
             overflow: TextOverflow.ellipsis,
             style: const TextStyle(
-              //fontWeight: FontWeight.bold,
               fontSize: 20,
               color: Color(0xff8E7CA0),
             ),
@@ -89,16 +80,14 @@ class AnnouncementItem extends StatelessWidget {
               children: [
                 Text(
                   announcement.language,
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Colors.white,
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                const Spacer(
-                  flex: 1,
-                ),
-                Icon(
+                const Spacer(flex: 1),
+                const Icon(
                   Icons.people_alt,
                   color: Colors.white,
                 ),
@@ -110,11 +99,9 @@ class AnnouncementItem extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                const Spacer(
-                  flex: 1,
-                ),
+                const Spacer(flex: 1),
                 Text(
-                  announcement.projrctType,
+                  announcement.projectType,  // Fixed
                   style: const TextStyle(
                     color: Colors.white,
                     fontSize: 18,
@@ -124,7 +111,7 @@ class AnnouncementItem extends StatelessWidget {
               ],
             ),
           ),
-        ], //children of column
+        ],
       ),
     );
   }

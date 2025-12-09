@@ -1,4 +1,4 @@
-import 'dart:io';
+//import 'dart:io';
 
 import 'package:collabify/screens/create_project_screen.dart';
 import 'package:flutter/material.dart';
@@ -24,7 +24,7 @@ class HostScreen extends StatelessWidget {
       ),
       child: Scaffold(
         backgroundColor: Colors.transparent,
-       body: Center(
+        body: Center(
           child: ConstrainedBox(
             constraints: const BoxConstraints(
               maxWidth: 400,
@@ -35,49 +35,50 @@ class HostScreen extends StatelessWidget {
                   //mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.start,
-                 children: [
-                   SizedBox(
+                  children: [
+                    SizedBox(
                       height: 40,
                     ),
-
-                   
                     InkWell(
                       onTap: () {
-                        Navigator.push(context,
-                        MaterialPageRoute(builder: (BuildContext context) {
-                      return const CreateProjectScreen();
-                    }));
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (BuildContext context) {
+                              return const CreateProjectScreen();
+                            },
+                          ),
+                        );
                       },
                       child: Container(
-                          padding:
-                              EdgeInsets.symmetric(horizontal: 20, vertical: 7),
-                          width: 390,
-                          height: 90,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
-                            color: Color(0xffFF7700),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black.withOpacity(0.18),
-                                blurRadius: 6,
-                                offset: const Offset(0, 3),
-                              ),
-                            ],
-                          ),
-                          child: Center(
-                            child: Text(
-                              "Create New Project",
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 30,
-                              ),
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 20, vertical: 7),
+                        width: 390,
+                        height: 90,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          color: Color(0xffFF7700),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withOpacity(0.18),
+                              blurRadius: 6,
+                              offset: const Offset(0, 3),
+                            ),
+                          ],
+                        ),
+                        child: Center(
+                          child: Text(
+                            "Create New Project",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 30,
                             ),
                           ),
                         ),
+                      ),
                     ),
-
                     SizedBox(height: 20),
-                      InkWell(
+                    InkWell(
                       onTap: () {
                         
                       },
@@ -108,17 +109,21 @@ class HostScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-                   SizedBox(height: 200,),
-                   InkWell(
-                    onTap: () {
+                    SizedBox(
+                      height: 200,
+                    ),
+                    InkWell(
+                      onTap: () {
                         Navigator.pop(context);
                       },
-                     child: Container(
+                      child: Container(
                         width: 120,
                         height: 70,
                         padding: const EdgeInsets.all(18),
                         decoration: BoxDecoration(
-                          gradient: LinearGradient( colors: [Color(0xFFFB923C), Color(0xFFF97316)],),
+                          gradient: LinearGradient(
+                            colors: [Color(0xFFFB923C), Color(0xFFF97316)],
+                          ),
                           // color: Color(0xffFF7700),
                           borderRadius: BorderRadius.circular(70),
                           border: Border.all(
@@ -137,8 +142,8 @@ class HostScreen extends StatelessWidget {
                           ),
                         ),
                       ),
-                   ),
-                 ],
+                    ),
+                  ],
                 ),
               ),
             ),

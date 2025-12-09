@@ -1,17 +1,19 @@
 //import 'package:flutter/material.dart';
 
 class Announcement {
-  final String uaserName;
+  final String userName;  // Fixed from uaserName
   final String projectName;
-  final String describtion;
+  final String description;  // Fixed from describtion
   final String language;
   final String teamNum;
-  final String projrctType;
-  const Announcement(
-      {required this.uaserName,
-      required this.projectName,
-      required this.describtion,
-      required this.language,
-      required this.teamNum,
-      required this.projrctType});
+  final String projectType;  // Fixed from projrctType
+
+  const Announcement({
+    required this.userName,
+    required this.projectName,
+    required this.description,
+    required this.language,
+    required this.teamNum,
+    required this.projectType,
+  });
 }

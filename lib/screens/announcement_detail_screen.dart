@@ -34,53 +34,40 @@ class AnnouncementDetailScreen extends StatelessWidget {
               child: SingleChildScrollView(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
-                  //mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    SizedBox(
-                      height: 40,
-                    ),
+                    const SizedBox(height: 40),
                     Text(
-                      ' ${announcement.projectName ?? 'Unknown'}',
+                      ' ${announcement.projectName}',  // No need for ?? since it's required
                       style: const TextStyle(
                         fontSize: 32,
                         fontWeight: FontWeight.bold,
                         color: Colors.white,
                       ),
                     ),
-                    SizedBox(
-                      height: 10,
-                    ),
+                    const SizedBox(height: 10),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(
+                        const Text(
                           "By",
                           style: TextStyle(color: Colors.white, fontSize: 18),
                         ),
                         InkWell(
                           onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => UsernameProfileScreen(
-                                  username: announcement.uaserName ?? 'Unknown',
-                                ),
-                              ),
-                            );
+                            // Placeholder for user tap action
                           },
                           child: Text(
-                            ' ${announcement.uaserName ?? 'Unknown'}',
+                            ' ${announcement.userName}',  // Fixed
                             style: const TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                                color: Color(0xff8400FF)),
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                              color: Color(0xff8400FF),
+                            ),
                           ),
                         ),
                       ],
                     ),
-                    SizedBox(
-                      height: 15,
-                    ),
+                    const SizedBox(height: 15),
                     Container(
                       width: 364,
                       height: 184,
@@ -94,8 +81,8 @@ class AnnouncementDetailScreen extends StatelessWidget {
                       ),
                       child: Center(
                         child: Text(
-                          'Description: ${announcement.describtion ?? 'No description'}',
-                          style: TextStyle(
+                          'Description: ${announcement.description}',  // Fixed
+                          style: const TextStyle(
                             color: Color(0xFFBEB3DD),
                             fontSize: 16,
                             height: 1.4,
@@ -104,23 +91,21 @@ class AnnouncementDetailScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-                    SizedBox(
-                      height: 8,
-                    ),
+                    const SizedBox(height: 8),
                     Row(
                       children: [
                         SmallBox(
-                            color: Color(0xff8400FF),
-                            text: ' ${announcement.language ?? 'Unknown'}'),
-                        SizedBox(
-                          width: 10,
+                          color: const Color(0xff8400FF),
+                          text: ' ${announcement.language}',
                         ),
+                        const SizedBox(width: 10),
                         SmallBox(
-                            color: Color(0xff8400FF),
-                            text: ' ${announcement.projrctType ?? 'Unknown'}'),
+                          color: const Color(0xff8400FF),
+                          text: ' ${announcement.projectType}',  // Fixed
+                        ),
                       ],
                     ),
-                    Icon(
+                    const Icon(
                       Icons.groups_rounded,
                       size: 60,
                       color: Colors.white,
@@ -130,41 +115,39 @@ class AnnouncementDetailScreen extends StatelessWidget {
                       children: [
                         Text(
                           ' ${announcement.teamNum}',
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 28,
-                              fontWeight: FontWeight.w400),
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 28,
+                            fontWeight: FontWeight.w400,
+                          ),
                         ),
-                        Text(
+                        const Text(
                           " members",
                           style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 28,
-                              fontWeight: FontWeight.w400),
+                            color: Colors.white,
+                            fontSize: 28,
+                            fontWeight: FontWeight.w400,
+                          ),
                         ),
                       ],
                     ),
-                    SizedBox(
-                      height: 20,
-                    ),
+                    const SizedBox(height: 20),
                     InkWell(
                       onTap: () {
                         ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
+                          const SnackBar(
                             content: Text('Join request sent!'),
                             duration: Duration(seconds: 2),
-                            
                           ),
                         );
                       },
                       child: Container(
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 20, vertical: 7),
+                        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 7),
                         width: 350,
                         height: 90,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20),
-                          color: Color(0xffFF7700),
+                          color: const Color(0xffFF7700),
                           boxShadow: [
                             BoxShadow(
                               color: Colors.black.withOpacity(0.18),
@@ -173,7 +156,7 @@ class AnnouncementDetailScreen extends StatelessWidget {
                             ),
                           ],
                         ),
-                        child: Center(
+                        child: const Center(
                           child: Text(
                             "Request Join",
                             style: TextStyle(
@@ -184,21 +167,18 @@ class AnnouncementDetailScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-                    SizedBox(
-                      height: 15,
-                    ),
+                    const SizedBox(height: 15),
                     InkWell(
                       onTap: () {
                         Navigator.pop(context);
                       },
                       child: Container(
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 20, vertical: 7),
+                        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 7),
                         width: 350,
                         height: 90,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20),
-                          color: Color(0xff8400FF),
+                          color: const Color(0xff8400FF),
                           boxShadow: [
                             BoxShadow(
                               color: Colors.black.withOpacity(0.18),
@@ -207,7 +187,7 @@ class AnnouncementDetailScreen extends StatelessWidget {
                             ),
                           ],
                         ),
-                        child: Center(
+                        child: const Center(
                           child: Text(
                             "Go Back",
                             style: TextStyle(
