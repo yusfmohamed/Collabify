@@ -1,5 +1,6 @@
 import 'package:collabify/components/small_box.dart';
 import 'package:collabify/models/announcement.dart';
+import 'package:collabify/screens/username_profile_screen.dart';
 import 'package:flutter/material.dart';
 
 class AnnouncementDetailScreen extends StatelessWidget {

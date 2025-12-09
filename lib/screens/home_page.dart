@@ -1,8 +1,9 @@
 import 'package:collabify/screens/host_screen.dart';
 import 'package:collabify/screens/join_screen.dart';
+import 'package:collabify/icons/activity_screen.dart';  // Added import for ActivityScreen
 import 'package:flutter/material.dart';
 import 'about_screen.dart';
-import 'settings_screen.dart';
+// import 'settings_screen.dart';
 
 class HomePage extends StatefulWidget {
   final String username;
@@ -40,21 +41,27 @@ class _HomePageState extends State<HomePage> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    // Left side - Settings, Tasks, and About
+                    // Left side - Settings, Tasks (now navigates to ActivityScreen), and About
                     Row(
                       children: [
                         _buildTopIcon(Icons.settings, Colors.white, () {
                           // Navigate to settings
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const SettingsScreen(),
-                            ),
-                          );
+                          // Navigator.push(
+                          //   context,
+                          //   MaterialPageRoute(
+                          //     builder: (context) => const SettingsScreen(),
+                          //   ),
+                          // );
                         }),
                         const SizedBox(width: 12),
                         _buildTopIcon(Icons.assignment, Colors.white, () {
-                          // Navigate to tasks
+                          // Navigate to ActivityScreen (stats/tracking)
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const ActivityScreen(),
+                            ),
+                          );
                         }),
                         const SizedBox(width: 12),
                         _buildTopIcon(Icons.info_outline, const Color(0xFFFBBF24), () {
