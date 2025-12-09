@@ -1,5 +1,6 @@
 //import 'dart:io';
 
+import 'package:collabify/icons/activity_screen.dart';
 import 'package:collabify/screens/create_project_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -80,7 +81,14 @@ class HostScreen extends StatelessWidget {
                     SizedBox(height: 20),
                     InkWell(
                       onTap: () {
-                        
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (BuildContext context) {
+                              return const ActivityScreen();
+                            },
+                          ),
+                        );
                       },
                       child: Container(
                         padding:
